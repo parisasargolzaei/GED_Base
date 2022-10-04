@@ -31,6 +31,10 @@ public class SpikeBall : Observer
     void SpikeColor(Color mat)
     {
         //If the box is close to the ground
-        spikeObj.GetComponent<Renderer>().materials[0].color = mat;
+        if(spikeObj)
+        {
+            spikeObj.GetComponent<Renderer>().materials[0].color = mat;
+        }
+        
     }
 }

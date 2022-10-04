@@ -7,6 +7,7 @@ public class Subject
 {
     //A list with observers that are waiting for something to happen
     List<Observer> observers = new List<Observer>();
+    Observer observerTmp;
 
     //Send notifications if something has happened
     public void Notify()
@@ -23,10 +24,6 @@ public class Subject
     public void AddObserver(Observer observer)
     {
         observers.Add(observer);
-    }
-
-    //Remove observer from the list
-    public void RemoveObserver(Observer observer)
-    {
+        observerTmp = observer;
     }
 }

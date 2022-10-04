@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,17 +22,9 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     public Transform projectilePos;
 
-    private void OnEnable() {
-        inputAction.Enable();
-    }
+    private void Start() {
 
-    private void OnDisable() {
-        inputAction.Disable();
-    }
-
-    private void Awake() {
-
-        inputAction = new PlayerAction();
+        inputAction = PlayerInputController.controller.inputAction;
 
         inputAction.Player.Jump.performed += cntxt => Jump();
 
@@ -64,9 +55,12 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        Rigidbody bulletRb = Instantiate(projectile, projectilePos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        bulletRb.AddForce(transform.up * 1f, ForceMode.Impulse);
+        if(!EditorManager.instance.editorMode)
+        {
+            Rigidbody bulletRb = Instantiate(projectile, projectilePos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            bulletRb.AddForce(transform.up * 1f, ForceMode.Impulse);
+        }
     }
 
     // Update is called once per frame
@@ -81,6 +75,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * move.y * walkSpeed, Space.Self);
 
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, distanceToGround);
+        Debug.DrawRay(transform.position, -Vector3.up * distanceToGround, Color.red);
 
         Vector3 m = new Vector3(move.x, 0, move.y);
         AnimateRun(m);
