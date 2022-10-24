@@ -26,6 +26,8 @@ public class NativePlugin : MonoBehaviour
     [DllImport("NativePlugin")]
     private static extern void EndWriting();
 
+    public static NativePlugin plugin;
+
     PlayerAction inputAction;
 
     string m_Path;
@@ -34,13 +36,14 @@ public class NativePlugin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         inputAction = PlayerInputController.controller.inputAction;
 
         inputAction.Editor.Save.performed += cntxt => SaveItems();
 
         m_Path = Application.dataPath;
         fn = m_Path + "/save.txt";
-        Debug.Log(fn);    
+        Debug.Log(fn); 
     }
 
     void SaveItems()
