@@ -43,7 +43,6 @@ public class NativePlugin : MonoBehaviour
 
         m_Path = Application.dataPath;
         fn = m_Path + "/save.txt";
-        Debug.Log(fn); 
     }
 
     void SaveItems()

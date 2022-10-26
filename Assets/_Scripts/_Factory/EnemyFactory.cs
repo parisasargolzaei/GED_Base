@@ -40,7 +40,7 @@ public class EnemyFactory : MonoBehaviour
             // Debug.Log(enemy.Name);
             if(enemy.Name == enemyType)
             {
-                Debug.Log("enemy found");
+                // Debug.Log("enemy found");
                 var target = Activator.CreateInstance(enemy.GetType()) as Enemy;
 
                 return target;

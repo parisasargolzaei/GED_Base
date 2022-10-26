@@ -17,7 +17,7 @@ public class Crab : Enemy
     public override GameObject Create(GameObject prefab)
     {
         GameObject enemy = Instantiate(prefab);
-        Debug.Log("Crab enemy is created");
+        // Debug.Log("Crab enemy is created");
         return enemy;
     }
 }
