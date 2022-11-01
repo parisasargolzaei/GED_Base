@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isWalking = false;
 
+    
     public GameObject projectile;
     public Transform projectilePos;
 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         inputAction.Player.Look.performed += cntxt => rotate = cntxt.ReadValue<Vector2>();
         inputAction.Player.Look.canceled += cntxt => rotate = Vector2.zero;
 
+        // inputAction.Player.Reload.performed += cntxt => Reload();
         inputAction.Player.Shoot.performed += cntxt => Shoot();      
 
         animator = GetComponent<Animator>();
@@ -57,9 +59,10 @@ public class PlayerController : MonoBehaviour
     {
         if(!EditorManager.instance.editorMode)
         {
-            Rigidbody bulletRb = Instantiate(projectile, projectilePos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            bulletRb.AddForce(transform.up * 1f, ForceMode.Impulse);
+            // Rigidbody bulletRb = Instantiate(projectile, projectilePos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody bulletRb = ObjectPooler.instance.SpawnFromPool("Bullet", projectilePos.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            bulletRb.AddForce(projectilePos.transform.forward * 32f, ForceMode.Impulse);
+            // bulletRb.AddForce(bulletRb.transform.up * 1f, ForceMode.Impulse);
         }
     }
 

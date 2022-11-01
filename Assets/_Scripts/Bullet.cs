@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
+    private void OnEnable() {
+        transform.GetComponent<Rigidbody>().WakeUp();
+    }
+
+    private void OnDisable() {
+        transform.GetComponent<Rigidbody>().Sleep();
+    }
+
     private void OnCollisionEnter(Collision other) {
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        gameObject.SetActive(false);
 
         if(other.collider.tag == "Player")
         {
