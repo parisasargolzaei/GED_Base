@@ -132,7 +132,7 @@ public class EditorManager : MonoBehaviour
         if(instantiated)
         {
             mousePos = Mouse.current.position.ReadValue();
-            mousePos = new Vector3(mousePos.x, mousePos.y, 40f);
+            mousePos = new Vector3(mousePos.x, mousePos.y, 43f);
  
             item.transform.position = editorCam.ScreenToWorldPoint(mousePos);
         }

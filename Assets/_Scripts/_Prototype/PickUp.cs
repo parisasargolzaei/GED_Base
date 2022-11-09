@@ -4,15 +4,16 @@ using UnityEngine;
 
 public abstract class PickUp : MonoBehaviour
 {
+    protected int score;
+    protected int heal;
+    protected GameObject clone;
+
     public abstract GameObject Spawn();
     public abstract PickUp Clone();
 }
 
 public class Coin : PickUp
 {
-    private int score;
-    private GameObject clone;
-
     public Coin(GameObject clone, int score)
     {
         this.score = score;
@@ -39,9 +40,6 @@ public class Coin : PickUp
 
 public class BlueGem : PickUp
 {
-    private int score;
-    private GameObject clone;
-
     public BlueGem(GameObject clone, int score)
     {
         this.score = score;
@@ -68,9 +66,6 @@ public class BlueGem : PickUp
 
 public class GreenGem : PickUp
 {
-    private int score;
-    private GameObject clone;
-
     public GreenGem(GameObject clone, int score)
     {
         this.score = score;
@@ -97,9 +92,6 @@ public class GreenGem : PickUp
 
 public class PinkGem : PickUp
 {
-    private int score;
-    private GameObject clone;
-
     public PinkGem(GameObject clone, int score)
     {
         this.score = score;
@@ -121,5 +113,31 @@ public class PinkGem : PickUp
     public override PickUp Clone()
     {
         return new PinkGem(Instantiate(clone), score);
+    }
+}
+
+public class FullHeart : PickUp
+{
+    public FullHeart(GameObject clone, int heal)
+    {
+        this.heal = heal;
+        this.clone = clone;
+    }
+
+    public override GameObject Spawn()
+    {
+        if(!clone.GetComponent<Collectable>())
+        {
+            clone.AddComponent<Collectable>();
+        }
+
+        clone.GetComponent<Collectable>().heal = heal;
+
+        return clone;
+    }
+
+    public override PickUp Clone()
+    {
+        return new FullHeart(Instantiate(clone), heal);
     }
 }

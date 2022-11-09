@@ -17,6 +17,14 @@ public class PrototypeFactory : MonoBehaviour
     BlueGem bluePrototype;
     GreenGem greenPrototype;
     PinkGem pinkPrototype;
+    FullHeart heartPrototype;
+
+    CustomizablePlatform platformPrototype;
+    public GameObject platformPrefab;
+    public TMP_InputField widthInput;
+    public TMP_InputField heightInput;
+    int platWidth;
+    int platHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +35,7 @@ public class PrototypeFactory : MonoBehaviour
         bluePrototype = new BlueGem(allData[1]._prefab, 10);
         greenPrototype = new GreenGem(allData[2]._prefab, 50);
         pinkPrototype = new PinkGem(allData[3]._prefab, 100);
+        heartPrototype = new FullHeart(allData[4]._prefab, 10);
 
         for(int i = 0; i < allData.Count; i++)
         {
@@ -56,10 +65,27 @@ public class PrototypeFactory : MonoBehaviour
             case "PinkGem":
                 editor.item = pinkPrototype.Clone().Spawn();
                 break;
+            case "FullHeart":
+                editor.item = heartPrototype.Clone().Spawn();
+                break;
             default:
                 break;
         } 
 
         editor.instantiated = true;
+    }
+
+    public void PlatformClone()
+    {
+        platWidth = int.Parse(widthInput.GetComponent<TMP_InputField>().text);
+        platHeight = int.Parse(heightInput.GetComponent<TMP_InputField>().text);
+        
+        platformPrototype = new CustomizablePlatform(platformPrefab, platWidth, platHeight);
+
+        if(platWidth != 0 && platHeight != 0)
+        {
+            editor.item = platformPrototype.Clone().Spawn();
+            editor.instantiated = true;
+        }
     }
 }
