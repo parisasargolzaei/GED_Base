@@ -8,17 +8,17 @@ public class PlayerStats : CharacterStats
     public bool isDead = false;
     public Animator animator;
 
-    public event System.Action<int, int> OnHealthChanged;
-
     public override void Die()
     {
         base.Die();
 
-        isDead = true;
+        // isDead = true;
 
-        animator.SetTrigger("Death");
+        // animator.SetTrigger("Death");
         
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Destroy(gameObject);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        GameplayManager.gameplay.DeadPanelToggle();
+        // Destroy(gameObject);
     }
 }

@@ -141,3 +141,29 @@ public class FullHeart : PickUp
         return new FullHeart(Instantiate(clone), heal);
     }
 }
+
+public class LevelKey : PickUp
+{
+    public LevelKey(GameObject clone)
+    {
+        this.clone = clone;
+    }
+
+    public override GameObject Spawn()
+    {
+        if(!clone.GetComponent<Collectable>())
+        {
+            clone.AddComponent<Collectable>();
+        }
+
+        clone.GetComponent<Collectable>().heal = 0;
+        clone.GetComponent<Collectable>().score = 0;
+
+        return clone;
+    }
+
+    public override PickUp Clone()
+    {
+        return new LevelKey(Instantiate(clone));
+    }
+}

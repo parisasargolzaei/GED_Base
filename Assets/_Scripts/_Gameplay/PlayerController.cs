@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
         inputAction.Player.Look.performed += cntxt => rotate = cntxt.ReadValue<Vector2>();
         inputAction.Player.Look.canceled += cntxt => rotate = Vector2.zero;
 
-        // inputAction.Player.Reload.performed += cntxt => Reload();
         inputAction.Player.Shoot.performed += cntxt => Shoot();      
+        inputAction.Player.Quit.performed += cntxt => QuitGame();  
 
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -88,5 +88,10 @@ public class PlayerController : MonoBehaviour
     {
         isWalking = (m.x > 0.1f || m.x < -0.1f) || (m.z > 0.1f || m.z < -0.1f) ? true : false;
         animator.SetBool("isWalking", isWalking);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
     }
 }

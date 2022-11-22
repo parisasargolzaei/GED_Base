@@ -41,7 +41,18 @@ public class NativePlugin : MonoBehaviour
 
         inputAction.Editor.Save.performed += cntxt => SaveItems();
 
-        m_Path = Application.dataPath;
+        // Edited
+        if (Application.isEditor)
+        {
+            m_Path = Application.dataPath;
+        }
+        else
+        {
+            m_Path = Application.persistentDataPath;
+        }
+
+        Debug.Log(Application.persistentDataPath);
+        
         fn = m_Path + "/save.txt";
     }
 

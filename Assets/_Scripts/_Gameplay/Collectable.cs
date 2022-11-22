@@ -9,7 +9,11 @@ public class Collectable : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if(other.collider.tag == "Player"){
-            if(score != 0)
+            if(score == 0 && heal == 0)
+            {
+                GameplayManager.gameplay.WinPanelToggle();
+            }
+            else if(score != 0)
             {
                 ScoreManager.instance.ChangeScore(score);
             }

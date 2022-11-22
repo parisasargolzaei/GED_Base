@@ -33,3 +33,28 @@ public class Monster : Enemy
         return enemy;
     }
 }
+
+// Edited
+public class Spike1 : Enemy
+{
+    public override string Name => "spike1";
+
+    public override GameObject Create(GameObject prefab)
+    {
+        GameObject enemy = Instantiate(prefab);
+        Debug.Log("Spike1 enemy is created");
+        return enemy;
+    }
+}
+
+public class Spike2 : Enemy
+{
+    public override string Name => "spike2";
+
+    public override GameObject Create(GameObject prefab)
+    {
+        GameObject enemy = Instantiate(prefab);
+        Debug.Log("Spike2 enemy is created");
+        return enemy;
+    }
+}
