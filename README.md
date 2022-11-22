@@ -12,5 +12,6 @@ F to save spike positions into save.txt<br />
 RMB to place items into the scene<br />
 Z to undo the last action<br />
 Use the dropdown to select the category of the item you want to create<br />
+Use arrow buttons to move around the editor camera<br />
 
 You can find the build in the Build folder.
