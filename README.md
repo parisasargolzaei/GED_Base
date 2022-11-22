@@ -1,10 +1,10 @@
 # GED_Base
 
 ## Game Controls
-WASD to move
-Mouse to look around
-LMB to shoot
-ESC to quit the game
+WASD to move<br />
+Mouse to look around<br />
+LMB to shoot<br />
+ESC to quit the game<br />
 
 ## Game Editor
 E to enter editor mode
